@@ -1,0 +1,63 @@
+.weather-app {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 15px auto;
+  padding: 20px;
+  max-width: 620px;
+  font-family: "PT Mono", monospace;
+  background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+.search-form {
+  font-size: 17px;
+  margin-top: 20px;
+  padding: 0;
+}
+.button {
+  border-radius: 10px;
+  margin: 3px;
+  color: #393ca0;
+  background-color: #91b0ec;
+}
+.button:hover {
+  background-color: #c296da;
+  color: white;
+  transition: all 200ms ease-in-out;
+  opacity: 0.6;
+}
+.weekday__title {
+  font-size: 20px;
+}
+
+.weather-temperature {
+  font-size: 36px;
+}
+section.forcast .weekday {
+  text-align: center;
+  border-radius: 30px;
+  color: #57385c;
+}
+section.forcast .weekday:hover {
+  color: white;
+  background-color: #c296da;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.weather-location,
+.weather-temperature,
+.weather-statistics {
+  padding: 20px;
+  text-align: center;
+  color: #27296d;
+}
+.weather-temperature .unit,
+#celsius-link,
+#fahrenheit-link {
+  position: relative;
+  top: -5px;
+  font-size: 12px;
+  text-decoration: none;
+}
+input::placeholder {
+  font-size: 15px;
+}
