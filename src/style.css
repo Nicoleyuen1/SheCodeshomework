@@ -6,6 +6,7 @@
   max-width: 620px;
   font-family: "PT Mono", monospace;
   background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
 }
 .search-form {
   font-size: 17px;
@@ -54,7 +55,7 @@ section.forcast .weekday:hover {
 #celsius-link,
 #fahrenheit-link {
   position: relative;
-  top: -5px;
+  top: -8px;
   font-size: 12px;
   text-decoration: none;
 }
