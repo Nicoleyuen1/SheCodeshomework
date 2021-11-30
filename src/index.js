@@ -1,33 +1,32 @@
 //Challenge 1
 
-let current = document.querySelector("#time");
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
 
-let now = new Date();
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
 
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thurday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let today = days[now.getDay()];
+
+  return `${today} ${hours}:${minutes}`;
 }
-
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let time = `${hours}:${minutes}`;
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thurday",
-  "Friday",
-  "Saturday",
-];
-
-let today = days[now.getDay()];
-
-current.innerHTML = `${today} ${time}`;
 
 //challenge 2
 
@@ -53,18 +52,21 @@ function showWeatherConditions(response) {
   document
     .querySelector("#icon")
     .setAttribute("alt", response.data.weather[0].description);
-}
-
-function cityClick(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  document.querySelector("#time").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
 }
 
 function searchCity(city) {
   let apiKey = "45c53691ffca75c2aad969972b22ca80";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeatherConditions);
+}
+
+function cityClick(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  searchCity(city);
 }
 
 //challenge 3
