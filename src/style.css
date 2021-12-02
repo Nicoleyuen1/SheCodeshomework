@@ -51,11 +51,9 @@ section.forcast .weekday:hover {
   text-align: center;
   color: #27296d;
 }
-.weather-temperature .unit,
-#celsius-link,
-#fahrenheit-link {
+.weather-temperature .unit {
   position: relative;
-  top: -8px;
+  top: -15px;
   font-size: 12px;
   text-decoration: none;
 }
@@ -68,5 +66,14 @@ input::placeholder {
   font-size: 15px;
 }
 a:link {
+  text-decoration: none;
+}
+
+.active {
+  color: #27296d;
+  cursor: default;
+}
+.active:hover {
+  color: #27296d;
   text-decoration: none;
 }

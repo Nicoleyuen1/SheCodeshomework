@@ -31,11 +31,10 @@ function formatDate(timestamp) {
 //challenge 2
 
 function showWeatherConditions(response) {
-  console.log(response.data);
   document.querySelector("#city-name").innerHTML = response.data.name;
-  document.querySelector("#temp").innerHTML = Math.round(
-    response.data.main.temp
-  );
+
+  unitCelsiusTemp = response.data.main.temp;
+  document.querySelector("#temp").innerHTML = Math.round(unitCelsiusTemp);
   document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   );
@@ -70,23 +69,6 @@ function cityClick(event) {
   searchCity(city);
 }
 
-//challenge 3
-// function clickCelsius(event) {
-//   event.preventDefault();
-//   let currentTemp = document.querySelector("#temp");
-//   currentTemp.innerHTML = `14`;
-// }
-// let unitCelsius = document.querySelector("#celsius-link");
-// unitCelsius.addEventListener("click", clickCelsius);
-
-// function clickFahrenheit(event) {
-//   event.preventDefault();
-//   let currentTemp = document.querySelector("#temp");
-//   currentTemp.innerHTML = `57`;
-// }
-// let unitFahrenheit = document.querySelector("#fahrenheit-link");
-// unitFahrenheit.addEventListener("click", clickFahrenheit);
-
 //challenge 2 bonus
 function currentClick(event) {
   event.preventDefault();
@@ -101,10 +83,33 @@ function showLocation(position) {
   axios.get(apiUrl).then(showWeatherConditions);
 }
 
+function clickFahrenheit(event) {
+  event.preventDefault();
+  unitCelsius.classList.remove("active");
+  unitFahrenheit.classList.add("active");
+  let Fahrenheit = (unitCelsiusTemp * 9) / 5 + 32;
+  document.querySelector("#temp").innerHTML = Math.round(Fahrenheit);
+}
+
+function clickCelsius(event) {
+  event.preventDefault();
+  unitCelsius.classList.add("active");
+  unitFahrenheit.classList.remove("active");
+  document.querySelector("#temp").innerHTML = Math.round(unitCelsiusTemp);
+}
+
 let cityButton = document.querySelector("#search-form");
 cityButton.addEventListener("submit", cityClick);
 
 let currentLocation = document.querySelector("#current-button");
 currentLocation.addEventListener("click", currentClick);
+
+let unitFahrenheit = document.querySelector("#fahrenheit-link");
+unitFahrenheit.addEventListener("click", clickFahrenheit);
+
+let unitCelsius = document.querySelector("#celsius-link");
+unitCelsius.addEventListener("click", clickCelsius);
+
+let unitCelsiusTemp = null;
 
 searchCity("tokyo");
