@@ -1,5 +1,3 @@
-//Challenge 1
-
 function formatDate(timestamp) {
   let now = new Date(timestamp);
 
@@ -27,8 +25,6 @@ function formatDate(timestamp) {
 
   return `${today} ${hours}:${minutes}`;
 }
-
-//challenge 2
 
 function showWeatherConditions(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
@@ -69,7 +65,6 @@ function cityClick(event) {
   searchCity(city);
 }
 
-//challenge 2 bonus
 function currentClick(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showLocation);
