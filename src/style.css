@@ -25,7 +25,7 @@
   transition: all 200ms ease-in-out;
   opacity: 0.6;
 }
-.weekday__title {
+.weekday_title {
   font-size: 20px;
 }
 

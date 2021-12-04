@@ -82,8 +82,9 @@ function clickFahrenheit(event) {
   event.preventDefault();
   unitCelsius.classList.remove("active");
   unitFahrenheit.classList.add("active");
-  let Fahrenheit = (unitCelsiusTemp * 9) / 5 + 32;
-  document.querySelector("#temp").innerHTML = Math.round(Fahrenheit);
+  document.querySelector("#temp").innerHTML = Math.round(
+    (unitCelsiusTemp * 9) / 5 + 32
+  );
 }
 
 function clickCelsius(event) {
