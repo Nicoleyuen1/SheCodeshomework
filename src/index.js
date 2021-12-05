@@ -26,6 +26,29 @@ function formatDate(timestamp) {
   return `${today} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `  <div class="col weekday">
+      <div class="weekday_title">${day}</div>
+      <div>☀️</div>
+      <div class="forecast_temp">
+        <span class="wforecast_temp_max"> 18° </span>
+        <span class="wforecast_temp_min"> 12° </span>
+      </div>
+    </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showWeatherConditions(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
 
@@ -108,4 +131,5 @@ unitCelsius.addEventListener("click", clickCelsius);
 
 let unitCelsiusTemp = null;
 
+displayForecast();
 searchCity("tokyo");

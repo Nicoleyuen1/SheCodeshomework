@@ -32,12 +32,12 @@
 .weather-temperature {
   font-size: 36px;
 }
-section.forcast .weekday {
+section.weather-forecast .weekday {
   text-align: center;
   border-radius: 30px;
   color: #57385c;
 }
-section.forcast .weekday:hover {
+section.weather-forecast .weekday:hover {
   color: white;
   background-color: #c296da;
   transition: all 200ms ease-in-out;
