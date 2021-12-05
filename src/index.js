@@ -156,21 +156,21 @@ function showLocation(position) {
   axios.get(apiUrl).then(showWeatherConditions);
 }
 
-function clickFahrenheit(event) {
-  event.preventDefault();
-  unitCelsius.classList.remove("active");
-  unitFahrenheit.classList.add("active");
-  document.querySelector("#temp").innerHTML = Math.round(
-    (unitCelsiusTemp * 9) / 5 + 32
-  );
-}
+// function clickFahrenheit(event) {
+//   event.preventDefault();
+//   unitCelsius.classList.remove("active");
+//   unitFahrenheit.classList.add("active");
+//   document.querySelector("#temp").innerHTML = Math.round(
+//     (unitCelsiusTemp * 9) / 5 + 32
+//   );
+// }
 
-function clickCelsius(event) {
-  event.preventDefault();
-  unitCelsius.classList.add("active");
-  unitFahrenheit.classList.remove("active");
-  document.querySelector("#temp").innerHTML = Math.round(unitCelsiusTemp);
-}
+// function clickCelsius(event) {
+//   event.preventDefault();
+//   unitCelsius.classList.add("active");
+//   unitFahrenheit.classList.remove("active");
+//   document.querySelector("#temp").innerHTML = Math.round(unitCelsiusTemp);
+// }
 
 let cityButton = document.querySelector("#search-form");
 cityButton.addEventListener("submit", cityClick);
@@ -187,12 +187,12 @@ cambridgeButton.addEventListener("click", cambridgeClick);
 let edinburghButton = document.querySelector("#edinburgh-button");
 edinburghButton.addEventListener("click", edinburghClick);
 
-let unitFahrenheit = document.querySelector("#fahrenheit-link");
-unitFahrenheit.addEventListener("click", clickFahrenheit);
+// let unitFahrenheit = document.querySelector("#fahrenheit-link");
+// unitFahrenheit.addEventListener("click", clickFahrenheit);
 
-let unitCelsius = document.querySelector("#celsius-link");
-unitCelsius.addEventListener("click", clickCelsius);
+// let unitCelsius = document.querySelector("#celsius-link");
+// unitCelsius.addEventListener("click", clickCelsius);
 
-let unitCelsiusTemp = null;
+// let unitCelsiusTemp = null;
 
 searchCity("tokyo");
