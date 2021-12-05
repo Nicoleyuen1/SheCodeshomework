@@ -25,28 +25,50 @@ function formatDate(timestamp) {
 
   return `${today} ${hours}:${minutes}`;
 }
-
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  return days[day];
+}
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thur"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `  <div class="col weekday">
-      <div class="weekday_title">${day}</div>
-      <div>☀️</div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `  <div class="col weekday">
+      <div class="weekday_title">${formatDay(forecastDay.dt)}</div>
+       <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          alt=""
+          width="42"
+        />
       <div class="forecast_temp">
-        <span class="wforecast_temp_max"> 18° </span>
-        <span class="wforecast_temp_min"> 12° </span>
+        <span class="wforecast_temp_max"> ${Math.round(
+          forecastDay.temp.max
+        )}° </span>
+        <span class="wforecast_temp_min"> ${Math.round(
+          forecastDay.temp.min
+        )}° </span>
       </div>
     </div>
   `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "45c53691ffca75c2aad969972b22ca80";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showWeatherConditions(response) {
@@ -74,11 +96,30 @@ function showWeatherConditions(response) {
   document.querySelector("#time").innerHTML = formatDate(
     response.data.dt * 1000
   );
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
   let apiKey = "45c53691ffca75c2aad969972b22ca80";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeatherConditions);
+}
+
+function madrid() {
+  let apiKey = "45c53691ffca75c2aad969972b22ca80";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=madrid&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeatherConditions);
+}
+
+function cambridge() {
+  let apiKey = "45c53691ffca75c2aad969972b22ca80";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=cambridge&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeatherConditions);
+}
+
+function edinburgh() {
+  let apiKey = "45c53691ffca75c2aad969972b22ca80";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=edinburgh&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeatherConditions);
 }
 
@@ -91,6 +132,20 @@ function cityClick(event) {
 function currentClick(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showLocation);
+}
+
+function madridClick(event) {
+  event.preventDefault();
+  madrid();
+}
+function cambridgeClick(event) {
+  event.preventDefault();
+  cambridge();
+}
+
+function edinburghClick(event) {
+  event.preventDefault();
+  edinburgh();
 }
 function showLocation(position) {
   let lat = position.coords.latitude;
@@ -123,6 +178,15 @@ cityButton.addEventListener("submit", cityClick);
 let currentLocation = document.querySelector("#current-button");
 currentLocation.addEventListener("click", currentClick);
 
+let madridButton = document.querySelector("#madrid-button");
+madridButton.addEventListener("click", madridClick);
+
+let cambridgeButton = document.querySelector("#cambridge-button");
+cambridgeButton.addEventListener("click", cambridgeClick);
+
+let edinburghButton = document.querySelector("#edinburgh-button");
+edinburghButton.addEventListener("click", edinburghClick);
+
 let unitFahrenheit = document.querySelector("#fahrenheit-link");
 unitFahrenheit.addEventListener("click", clickFahrenheit);
 
@@ -131,5 +195,4 @@ unitCelsius.addEventListener("click", clickCelsius);
 
 let unitCelsiusTemp = null;
 
-displayForecast();
 searchCity("tokyo");
