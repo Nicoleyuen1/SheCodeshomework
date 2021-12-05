@@ -3,7 +3,7 @@
   border-radius: 10px;
   margin: 15px auto;
   padding: 20px;
-  max-width: 620px;
+  max-width: 590px;
   font-family: "PT Mono", monospace;
   background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
   box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
@@ -47,16 +47,25 @@ section.weather-forecast .weekday:hover {
 .weather-location,
 .weather-temperature,
 .weather-statistics {
-  padding: 20px;
   text-align: center;
   color: #27296d;
 }
+
+#temp {
+  position: relative;
+  top: 18px;
+  font-size: 38px;
+}
 .weather-temperature .unit {
   position: relative;
-  top: -15px;
-  font-size: 12px;
-  text-decoration: none;
+  top: 5px;
+  font-size: 19px;
 }
+#icon {
+  position: relative;
+  top: -6px;
+}
+
 input::placeholder {
   font-size: 15px;
 }
